@@ -14,11 +14,11 @@ if os.path.isfile(FILE_NAME):
     link_list.append(r)
 
 # set basic parameters
-target_url = 'http://news.ycombinator.com'
-headers = {'User-Agent': 'Mozilla/5.0 (Windows; U; MSIE 9.0; Windows NT 9.0; en-US))'}
+TARGET_URL = 'http://news.ycombinator.com'
+HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows; U; MSIE 9.0; Windows NT 9.0; en-US))'}
 
 # send request and soupify
-request = urllib2.Request(target_url, None, headers)
+request = urllib2.Request(TARGET_URL, None, HEADERS)
 response = urllib2.urlopen(request)
 soup = BeautifulSoup(response)
 
