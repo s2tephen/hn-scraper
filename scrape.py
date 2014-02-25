@@ -37,10 +37,6 @@ for l in links:
     link_list.append(data)
   else: # only update comment count if already in db
     data = link_list[ids.index(id_)]
-    data['id'] = data['id'].decode('utf8')
-    data['url'] = data['url'].decode('utf8')
-    data['title'] = data['title'].decode('utf8')
-    data['user'] = data['user'].decode('utf8')
     data['comments'] = l.parent.nextSibling.findAll('a')[1].text.split(' ')[0]
   print '  ' + l.a.get('href')
 print '...done!'
@@ -51,4 +47,7 @@ writer = csv.DictWriter(open('hacker_news.csv', 'wb'), fieldnames=field_names)
 headers = dict((n, n) for n in field_names)
 writer.writerow(headers)
 for data in link_list:
-  writer.writerow(dict((k, v.encode('utf8')) for k, v in data.iteritems()))
+  if data in ids:
+    writer.writerow(data)
+  else:
+    writer.writerow(dict((k, v.encode('utf8')) for k, v in data.iteritems()))
